@@ -79,7 +79,7 @@ The client will run at `http://localhost:5173` (default for Vite).
 
 ---
 
-## 🧪 **Testing**
+## 🧪 **Format code**
 
 To run ESLint and Prettier:
 
