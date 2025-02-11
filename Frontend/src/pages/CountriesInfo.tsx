@@ -63,55 +63,63 @@ export const CountriesInfo = () => {
   if (!countryData) {
     return (
       <Container className="text-center mt-5">
-        <h2>Country not found</h2>
+        <h1>Country not found</h1>
       </Container>
     );
   }
 
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 animate__animated animate__backInDown  w-100vw">
       <Row>
+        {/* Country Name & Flag */}
         <Col md={6}>
-          <Card className="p-3 text-center">
-            <Card.Title className="fw-bold">{countryData.country}</Card.Title>
+          <Card className="p-3 text-center shadow-sm border-primary bg-white">
+            <Card.Title className="fw-bold text-primary">{countryData.country}</Card.Title>
             <Card.Img
               variant="top"
               src={countryData.flagUrl}
               alt={`Flag of ${countryData.country}`}
-              className="mt-2"
+              className="mt-2 border border-primary rounded"
             />
           </Card>
         </Col>
 
+        {/* Border Countries */}
         <Col md={6}>
-          <Card className="p-3">
-            <Card.Title>Border Countries</Card.Title>
+          <Card className="p-3 shadow-sm border-secondary bg-white">
+            <Card.Title className="text-secondary">Border Countries</Card.Title>
             {countryData.borderCountries.length > 0 ? (
-              <ListGroup>
+              <ListGroup variant="flush">
                 {countryData.borderCountries.map((border) => (
-                  <ListGroup.Item key={border.countryCode}>
-                    <Link to={`/country-info/${border.countryCode}`}>{border.commonName}</Link>
+                  <ListGroup.Item key={border.countryCode} className="border-0">
+                    <Link
+                      to={`/country-info/${border.countryCode}`}
+                      className="text-decoration-none text-dark"
+                    >
+                      {border.commonName}
+                    </Link>
                   </ListGroup.Item>
                 ))}
               </ListGroup>
             ) : (
-              <p>No border countries available</p>
+              <p className="text-muted">No border countries available</p>
             )}
           </Card>
         </Col>
       </Row>
 
+      {/* Population Over Time */}
       <Row className="mt-4">
         <Col>
-          <Card className="p-3">
-            <Card.Title>Population Over Time</Card.Title>
+          <Card className="p-3 shadow-sm border-info bg-white">
+            <Card.Title className="text-info">Population Over Time</Card.Title>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={countryData.population}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="year" />
-                <YAxis />
+                <CartesianGrid strokeDasharray="3 3" stroke="lightgray" />
+                <XAxis dataKey="year" tick={{ fill: "#007bff" }} />
+                <YAxis tick={{ fill: "#007bff" }} />
                 <Tooltip />
-                <Line type="monotone" dataKey="value" stroke="#007bff" />
+                <Line type="monotone" dataKey="value" stroke="#007bff" strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
           </Card>

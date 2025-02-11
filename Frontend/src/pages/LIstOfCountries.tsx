@@ -37,17 +37,22 @@ export const ListOfCountries = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
+  const colors = ["primary", "success", "warning", "danger", "info"];
+
   return (
     <Container className="mt-4">
-      <h1 className="text-center mb-4">List of Countries</h1>
+      <h1 className="text-center mb-4 animate__animated animate__backInDown">List of Countries</h1>
       <Row>
-        {countries.map((country) => (
+        {countries.map((country, index) => (
           <Col key={country.countryCode} xs={12} sm={6} md={4} lg={3} className="mb-3">
-            <Card className="h-100 shadow-sm">
-              <Card.Body className="text-center">
+            <Card
+              className={`h-100 shadow-lg text-white bg-${colors[index % colors.length]} rounded animate__animated animate__backInLeft 
+              transition`}
+            >
+              <Card.Body className="text-center animate__animated animate__backInUp">
                 <Card.Title>{country.name}</Card.Title>
-                <Card.Text className="text-muted">({country.countryCode})</Card.Text>
-                <Link to={`/country-info/${country.countryCode}`} className="btn btn-primary">
+                <Card.Text>({country.countryCode})</Card.Text>
+                <Link to={`/country-info/${country.countryCode}`} className="btn btn-light">
                   View Details
                 </Link>
               </Card.Body>
