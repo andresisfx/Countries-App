@@ -7,8 +7,8 @@ interface Country {
   name: string;
 }
 
-const baseUrl= import.meta.env.VITE_API_BASE_URL
-const availableCountries_endpoint=import.meta.env.VITE_AVAILABLE_COUNTRIES_ENDPOINT
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+const availableCountries_endpoint = import.meta.env.VITE_AVAILABLE_COUNTRIES_ENDPOINT;
 
 export const ListOfCountries = () => {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -18,7 +18,6 @@ export const ListOfCountries = () => {
   useEffect(() => {
     const fetchCountries = async () => {
       try {
-        console.log(`${baseUrl}${availableCountries_endpoint}`);
         const response = await fetch(`${baseUrl}${availableCountries_endpoint}`);
         if (!response.ok) {
           throw new Error("Error fetching countries");

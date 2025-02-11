@@ -12,7 +12,6 @@ import {
 } from "recharts";
 import { Container, Row, Col, Card, ListGroup, Spinner } from "react-bootstrap";
 
-
 interface BorderCountry {
   commonName: string;
   countryCode: string;
@@ -30,8 +29,8 @@ interface CountryInfo {
   population: PopulationData[];
 }
 
-const baseUrl= import.meta.env.VITE_API_BASE_URL
-const countryInfo_endpoint=import.meta.env.VITE_COUNTRY_INFO_ENDPOINT
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
+const countryInfo_endpoint = import.meta.env.VITE_COUNTRY_INFO_ENDPOINT;
 
 export const CountriesInfo = () => {
   const { code } = useParams<{ code: string }>();
@@ -43,10 +42,8 @@ export const CountriesInfo = () => {
   }, [code]);
   const fetchCountryInfo = async () => {
     try {
-      const response = await axios.get<CountryInfo>(
-        `${baseUrl}${countryInfo_endpoint}${code}`,
-      );
-      
+      const response = await axios.get<CountryInfo>(`${baseUrl}${countryInfo_endpoint}${code}`);
+
       setCountryData(response.data);
     } catch (error) {
       console.error("Error fetching country info:", error);

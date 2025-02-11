@@ -46,6 +46,8 @@ export const getCountryInfo = async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching country info:', error);
-    res.status(500).json({ error: 'Error retrieving country info', error });
+    res
+      .status(500)
+      .json({ error: 'Error retrieving country info', details: error.message });
   }
 };

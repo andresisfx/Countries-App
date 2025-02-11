@@ -1,5 +1,3 @@
-import e from "express";
-
 export const getAvailableCountries = async (req, res) => {
   const url = 'https://date.nager.at/api/v3/AvailableCountries';
 
@@ -9,7 +7,11 @@ export const getAvailableCountries = async (req, res) => {
 
     res.json(data);
   } catch (error) {
-    
-    res.status(500).json({ error: 'something went wrong getting available countries',error });
+    res
+      .status(500)
+      .json({
+        error: 'something went wrong getting available countries',
+        details: error.message,
+      });
   }
 };
